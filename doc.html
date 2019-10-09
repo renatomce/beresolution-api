@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Documentação</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <h1>Rotas</h1>
+    <ul>
+      <h2><li>/api</li></h2>
+      <p><b>Método: GET <br><br>
+        200 OK.<br>
+        Retorno: Objeto JSON caso apenas um registro novo, array de objetos JSON caso dois ou mais.<br><br>
+        204 No Content.<br>
+        Retorno: Array vazio.</b>
+      </p>
+      <p>
+        Compara os registros de caixas fechados no banco de dados com
+        os arquivos JSON no diretório /files. <br>Caso não encontre o arquivo 
+        do caixa, consulta o banco de dados, escreve o arquivo no diretório
+        e o retorna na requisição. <br>Caso não exista novos registros para escrever, retorna um array vazio.
+      </p>
+      <h2><li>/api/helper.php</li></h2>
+      <p><b>Método: GET <br><br>
+        200 OK.<br>
+        Retorno: Objeto JSON contendo id e nome das formas de pagamento e categorias de produtos.</b><br>
+      </p>
+      <p>
+        Consulta o banco de dados e retorna as formas de pagamento e categorias de produtos.<br>
+        Útil verificar quando receber algum id desconhecido na requisição da rota /api, <br>
+        o usuário pode ter cadastrado alguma forma de pagamento ou categoria de produtos nova.<br>
+        Escreve o arquivo "helper.json" no diretório /files.
+      </p>
+      <h2><li>/api/files</li></h2>
+      <p>
+        Diretório contendo os arquivos JSON de todos os caixas, e o arquivo "helper.json".
+      </p>
+    </ul>
+  </body>
+</html>

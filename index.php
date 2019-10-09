@@ -2,19 +2,15 @@
 
 set_time_limit(0);
 
+include('../connections/cnn.php');
+
 function queryExec($queries)
 {
-    $database = "127.0.0.1:D:\SSA\SantoBar\Dados\GOURMETSA.FDB";
-    $username = "SYSDBA";
-    $password = "masterkey";
     $dataArr = array();
-    $connection = ibase_connect($database, $username, $password, 'ISO8859_1', '100', '1');
     $control = 0;
     foreach ($queries as $query)
     {
-        $rid = @ibase_query ($connection, $query);
-        // if ($rid === false) errorHandle(ibase_errmsg(), $query);
-
+        $rid = @ibase_query ($query);
         $coln = ibase_num_fields($rid);
         $blobFields = array();
         for ($i = 0; $i < $coln; $i++)
@@ -66,7 +62,6 @@ function queryExec($queries)
         }
         $control++;
     }
-    ibase_close($connection);
     return $dataArr;
 }
 
@@ -112,5 +107,7 @@ function execute() {
 }
 
 execute();
+
+ibase_close($conn);
 
 ?>
